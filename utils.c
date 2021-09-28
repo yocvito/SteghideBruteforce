@@ -153,6 +153,8 @@ segment_string(const char *s, uint nb_segment)
 
 bool isnumber(char *s)
 {
+    if (strlen(s) == 0)
+        return false;
     while (*s != '\0')
     {
         if (!isdigit(*s))

@@ -80,8 +80,6 @@ sb_run_threads(uint nb_threads, char *wl, char *error, char *filename, bool verb
     error_output = strdup(error);
     stegfile = strdup(filename);
  
-    if (verbose)
-        printf(CYAN("Info: ")"Wordlist is from %p to %p (%lu bytes)\n", wl, wl+strlen(wl), strlen(wl));
     char **pointers = segment_string(wl, nb_threads);
     params = mem_alloc(sizeof *params * nb_threads);
     for (uint i=0; i<nb_threads; i++)
@@ -92,6 +90,11 @@ sb_run_threads(uint nb_threads, char *wl, char *error, char *filename, bool verb
             params[i][1] = wl+strlen(wl);
         else
             params[i][1] = pointers[i+1];
+    }
+    if (verbose)
+    {
+        printf(CYAN("Info: ")"Wordlist is from %p to %p (%lu bytes)\n", wl, wl+strlen(wl), strlen(wl));
+        printf(CYAN("Info: ")"Starting to bruteforce with %d threads !\n", nb_threads);
     }
     t_start = time(NULL);
     for (uint i=0; i<nb_threads ; i++)
