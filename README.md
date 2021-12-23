@@ -7,5 +7,5 @@ make
 
 ## Usage
 ```
-./steghide-bruteforce <wordlist> <stegfile> [nb-threads] [--verbose]
+./steghide-bruteforce -w <wordlist> -f <stegfile> [-t <nb-threads>] [--verbose]
 ```
